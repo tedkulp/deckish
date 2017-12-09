@@ -1,0 +1,15 @@
+{
+  "name": "deckish",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "elgato-stream-deck": "^2.0.0",
+    "obs-websocket-js": "^1.0.0"
+  }
+}
