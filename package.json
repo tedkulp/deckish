@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "elgato-stream-deck": "^2.0.0",
+    "lodash": "^4.17.4",
     "obs-websocket-js": "^1.0.0"
   }
 }

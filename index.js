@@ -1,5 +1,5 @@
 
-const {obs, getScene, setScene, setPreviousScene, toggleSource} = require('./lib/obs');
+const {obs, getScene, getSceneName, setScene, setPreviousScene, toggleSceneItem} = require('./lib/obs');
 const {streamDeck, convertKey} = require('./lib/stream_deck');
 
 const mainLayout = [
@@ -110,10 +110,10 @@ streamDeck.on('up', keyIndex => {
                 break;
             case 'sceneSourceToggle':
                 if (keyFound.scenes) {
-                    if (keyFound.scenes[getScene().name]) {
-                        const sourceName = keyFound.scenes[getScene().name];
-                        console.log('Toggle source', sourceName, getScene().name);
-                        toggleSource(getScene(), sourceName);
+                    const currentSceneName = getSceneName();
+                    if (keyFound.scenes[currentSceneName]) {
+                        const sceneItemName = keyFound.scenes[currentSceneName];
+                        toggleSceneItem(currentSceneName, sceneItemName);
                     }
                 }
                 break;
