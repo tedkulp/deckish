@@ -4,9 +4,9 @@
 * <strike>Scene dependent keys for toggling sources</strike>
 * <strike>Make sure setScene promise is caught if there is an error</strike>
 * <strike>Ability to hold button to change layouts</strike>
-* Enable babel so we can use modules...  because old export syntax is gross
-* Add redux as store
-  * State gets confusing between modules and main file
+* <strike>Enable babel so we can use modules...  because old export syntax is gross</strike>
+* <strike>Add redux as store</strike>
+  * <strike>State gets confusing between modules and main file</strike>
 * Set images for buttons
   * Using the jimp library
   * Make sure there are template pngs available to use
