@@ -61,7 +61,10 @@ const layouts = {
                 },
             },
             {
-                type: '',
+                type: 'sceneSourceToggle',
+                scenes: {
+                    'Full Screen HDMI': 'HDMI Scene',
+                },
             },
             {
                 type: '',
