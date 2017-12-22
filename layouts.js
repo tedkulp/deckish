@@ -2,7 +2,7 @@ import watch from 'redux-watch'
 import store from './lib/store';
 import _ from 'lodash';
 const { streamDeck, convertKey } = require('./lib/stream_deck');
-const { getSceneName } = require('./lib/obs');
+const { getSceneName, getScene } = require('./lib/obs');
 
 const layouts = {
     main: [
@@ -125,17 +125,47 @@ const layouts = {
                     'Full Screen HDMI': 'Face Camera Scene - Green Screen',
                     'Polaroid': 'Face Camera Scene 2 - Colours',
                 },
+                visual: {
+                    untoggled: {
+                        type: 'color',
+                        color: [0, 0, 255],
+                    },
+                    toggled: {
+                        type: 'color',
+                        color: [255, 255, 0],
+                    },
+                },
             },
             {
                 type: 'sceneSourceToggle',
                 scenes: {
                     'Full Screen HDMI': 'Keyboard Camera Scene',
                 },
+                visual: {
+                    untoggled: {
+                        type: 'color',
+                        color: [0, 0, 255],
+                    },
+                    toggled: {
+                        type: 'color',
+                        color: [255, 255, 0],
+                    },
+                },
             },
             {
                 type: 'sceneSourceToggle',
                 scenes: {
                     'Full Screen HDMI': 'HDMI Scene',
+                },
+                visual: {
+                    untoggled: {
+                        type: 'color',
+                        color: [0, 0, 255],
+                    },
+                    toggled: {
+                        type: 'color',
+                        color: [255, 255, 0],
+                    },
                 },
             },
             {
@@ -181,6 +211,40 @@ const updateActualButtons = (newVal, oldVal) => {
     });
 };
 
+const updateIndividualButtonState = (key, idx) => {
+    store.dispatch({ type: 'RESET_BUTTON', index: idx });
+
+    if (key && key.visual) {
+        if (key.type && key.visual.toggled) {
+            switch (key.type) {
+                case 'switchScene':
+                case 'toggleScene':
+                case 'momentaryScene':
+                    const currentSceneName = getSceneName();
+                    if (key.sceneName === currentSceneName) {
+                        return store.dispatch({ type: 'SET_BUTTON', index: idx, value: key.visual.toggled });
+                    }
+                    break;
+                case 'sceneSourceToggle':
+                    const currentScene = getScene();
+                    if (key.scenes && key.scenes[currentScene.name]) {
+                        const sourceName = key.scenes[currentScene.name];
+                        const foundSceneItem = _.find(currentScene.sources, sceneItem => sceneItem.name === sourceName);
+                        console.log('foundSceneItem', foundSceneItem);
+                        if (foundSceneItem && foundSceneItem.render) {
+                            return store.dispatch({ type: 'SET_BUTTON', index: idx, value: key.visual.toggled });
+                        }
+                    }
+                    break;
+            }
+        }
+
+        if (key.visual.untoggled) {
+            return store.dispatch({ type: 'SET_BUTTON', index: idx, value: key.visual.untoggled });
+        }
+    }
+};
+
 const updateButtonState = (newVal, oldVal, objectPath) => {
     console.log('%s changed from %s to %s', objectPath, oldVal, newVal);
 
@@ -190,28 +254,7 @@ const updateButtonState = (newVal, oldVal, objectPath) => {
     for (let idx = 0; idx < 15; idx++) {
         const { row, col } = convertKey(idx);
         let key = layout && layout[row] && layout[row][col];
-        store.dispatch({ type: 'RESET_BUTTON', index: idx });
-        if (key && key.visual) {
-            if (key.type && key.visual.toggled) {
-                switch (key.type) {
-                    case 'switchScene':
-                    case 'toggleScene':
-                    case 'momentaryScene':
-                        const currentSceneName = getSceneName();
-                        if (key.sceneName === currentSceneName) {
-                            store.dispatch({ type: 'SET_BUTTON', index: idx, value: key.visual.toggled });
-                        } else {
-                            store.dispatch({ type: 'SET_BUTTON', index: idx, value: key.visual.untoggled });
-                        }
-                        break;
-                    default:
-                        store.dispatch({ type: 'SET_BUTTON', index: idx, value: key.visual.untoggled });
-                }
-            }
-            else if (key.visual.untoggled) {
-                store.dispatch({ type: 'SET_BUTTON', index: idx, value: key.visual.untoggled });
-            }
-        }
+        updateIndividualButtonState(key, idx);
     }
 
     let newButtonState = store.getState().buttonState;
