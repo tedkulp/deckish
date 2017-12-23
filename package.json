@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/babel-node index.js",
-    "watch": "nodemon index.js --exec babel-node --ignore images/ --ignore node_modules/"
+    "debug": "babel-node --nolazy --inspect-brk=9229 index.js",
+    "watch": "nodemon index.js --exec babel-node --ignore images/ --ignore node_modules/",
+    "debug-watch": "nodemon index.js --exec babel-node --nolazy --inspect-brk=9229 --ignore images/ --ignore node_modules/"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +24,6 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
-    "nodemon": "^1.13.3"
+    "nodemon": "^1.14.3"
   }
 }
