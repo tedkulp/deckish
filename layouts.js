@@ -98,10 +98,32 @@ const layouts = {
                 message: "I'm a button on the main layout",
             },
             {
-                type: '',
+                type: 'switchScene',
+                sceneName: 'Room View',
+                visual: {
+                    untoggled: {
+                        type: 'color',
+                        color: [0, 255, 0],
+                    },
+                    toggled: {
+                        type: 'color',
+                        color: [255, 0, 0],
+                    },
+                },
             },
             {
-                type: '',
+                type: 'switchScene',
+                sceneName: 'Starting Up',
+                visual: {
+                    untoggled: {
+                        type: 'color',
+                        color: [0, 255, 0],
+                    },
+                    toggled: {
+                        type: 'color',
+                        color: [255, 0, 0],
+                    },
+                },
             },
             {
                 type: 'momentaryScene',
@@ -155,7 +177,7 @@ const layouts = {
             {
                 type: 'sceneSourceToggle',
                 scenes: {
-                    'Full Screen HDMI': 'HDMI Scene',
+                    'Full Screen HDMI': 'Room Camera',
                 },
                 visual: {
                     untoggled: {
@@ -230,7 +252,6 @@ const updateIndividualButtonState = (key, idx) => {
                     if (key.scenes && key.scenes[currentScene.name]) {
                         const sourceName = key.scenes[currentScene.name];
                         const foundSceneItem = _.find(currentScene.sources, sceneItem => sceneItem.name === sourceName);
-                        console.log('foundSceneItem', foundSceneItem);
                         if (foundSceneItem && foundSceneItem.render) {
                             return store.dispatch({ type: 'SET_BUTTON', index: idx, value: key.visual.toggled });
                         }
