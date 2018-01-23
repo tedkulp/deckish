@@ -3,6 +3,7 @@ import store from './lib/store';
 import _ from 'lodash';
 const { streamDeck, convertKey } = require('./lib/stream_deck');
 const { getSceneName, getScene } = require('./lib/obs');
+const image = require('./lib/image');
 
 const layouts = {
     main: [
@@ -12,12 +13,16 @@ const layouts = {
                 sceneName: 'Full Screen HDMI',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: '!Full Screen',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Full Screen',
                     },
                 },
             },
@@ -26,12 +31,16 @@ const layouts = {
                 sceneName: 'Full Desktop Camera',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Full Face',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Full Face',
                     },
                 },
             },
@@ -40,12 +49,16 @@ const layouts = {
                 sceneName: 'Polaroid',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Polaroid',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Polaroid',
                     },
                 },
             },
@@ -54,12 +67,16 @@ const layouts = {
                 sceneName: 'Keyboard Cam',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Key Cam',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Key Cam',
                     },
                 },
             },
@@ -68,12 +85,16 @@ const layouts = {
                 sceneName: 'BRB',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/pause.png',
+                        text: 'BRB',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/pause.png',
+                        text: 'BRB',
                     },
                 },
             },
@@ -84,12 +105,16 @@ const layouts = {
                 sceneName: 'Local Browser',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Browser',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Browser',
                     },
                 },
             },
@@ -102,12 +127,16 @@ const layouts = {
                 sceneName: 'Room View',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Room',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Room',
                     },
                 },
             },
@@ -116,12 +145,16 @@ const layouts = {
                 sceneName: 'Starting Up',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Starting',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Starting',
                     },
                 },
             },
@@ -130,72 +163,65 @@ const layouts = {
                 sceneName: 'ZOOM!',
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [0, 255, 0],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'ZOOM!',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'ZOOM!',
                     },
                 },
             },
         ],
         [
             {
-                type: 'sceneSourceToggle',
-                scenes: {
-                    'Full Screen HDMI': 'Face Camera Scene - Green Screen',
-                    'Polaroid': 'Face Camera Scene 2 - Colours',
-                },
-                visual: {
-                    untoggled: {
-                        type: 'color',
-                        color: [0, 0, 255],
-                    },
-                    toggled: {
-                        type: 'color',
-                        color: [255, 255, 0],
-                    },
-                },
+                type: 'none',
             },
             {
-                type: 'sceneSourceToggle',
-                scenes: {
-                    'Full Screen HDMI': 'Keyboard Camera Scene',
-                },
-                visual: {
-                    untoggled: {
-                        type: 'color',
-                        color: [0, 0, 255],
-                    },
-                    toggled: {
-                        type: 'color',
-                        color: [255, 255, 0],
-                    },
-                },
+                type: 'none',
             },
             {
-                type: 'sceneSourceToggle',
-                scenes: {
-                    'Full Screen HDMI': 'Room Camera',
-                },
-                visual: {
-                    untoggled: {
-                        type: 'color',
-                        color: [0, 0, 255],
-                    },
-                    toggled: {
-                        type: 'color',
-                        color: [255, 255, 0],
-                    },
-                },
+                type: 'none',
             },
             {
-                type: '',
+                type: 'momentaryLayout',
+                layoutName: 'sources',
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#33c',
+                        backgroundImage: './images/folder.png',
+                        text: 'Sources',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/folder.png',
+                        text: 'Sources',
+                    },
+                }
             },
             {
                 type: 'momentaryLayout',
                 layoutName: 'sounds',
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#33c',
+                        backgroundImage: './images/folder.png',
+                        text: 'Sounds',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/folder.png',
+                        text: 'Sounds',
+                    },
+                }
             },
         ],
     ],
@@ -216,16 +242,127 @@ const layouts = {
                 },
             },
         ],
+    ],
+    sources: [
+        [
+            {
+                type: 'sceneSourceToggle',
+                scenes: {
+                    'Full Screen HDMI': 'Face Camera Scene - Green Screen',
+                    'Polaroid': 'Face Camera Scene 2 - Colours',
+                },
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#33c',
+                        backgroundImage: './images/gears.png',
+                        text: 'Face',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/gears.png',
+                        text: 'Face',
+                    },
+                },
+            },
+            {
+                type: 'sceneSourceToggle',
+                scenes: {
+                    'Full Screen HDMI': 'Keyboard Camera Scene',
+                },
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#33c',
+                        backgroundImage: './images/gears.png',
+                        text: 'Desk',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/gears.png',
+                        text: 'Desk',
+                    },
+                },
+            },
+            {
+                type: 'sceneSourceToggle',
+                scenes: {
+                    'Full Screen HDMI': 'Room Camera',
+                },
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#33c',
+                        backgroundImage: './images/gears.png',
+                        text: 'Room',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/gears.png',
+                        text: 'Room',
+                    },
+                },
+            },
+            {
+                type: 'sceneSourceToggle',
+                scenes: {
+                    'Full Screen HDMI': 'HDMI',
+                },
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#33c',
+                        backgroundImage: './images/gears.png',
+                        text: 'Blur',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/gears.png',
+                        text: 'Blur',
+                    },
+                },
+            },
+        ]
     ]
 };
 
 store.dispatch({ type: 'INIT_LAYOUTS', value: layouts });
 
+try {
+_.forEach(layouts, (layoutButtons, layoutName, idx) => {
+    _.forEach(layoutButtons, (row, rowIdx) => {
+        _.forEach(row, async (btn, btnIdx) => {
+            if (_.get(btn, 'visual.untoggled.type') === 'image') {
+                const generatedImage = await image.generateImage(btn.visual.untoggled);
+                store.dispatch({ type: 'UPDATE_BUTTON_IMG', layout: layoutName, row: rowIdx, index: btnIdx, image: generatedImage, imageType: 'untoggled' });
+            }
+            if (_.get(btn, 'visual.toggled.type') === 'image') {
+                const generatedImage = await image.generateImage(btn.visual.toggled);
+                store.dispatch({ type: 'UPDATE_BUTTON_IMG', layout: layoutName, row: rowIdx, index: btnIdx, image: generatedImage, imageType: 'toggled' });
+            }
+        });
+    });
+});
+} catch(err) {
+    console.error(err);
+}
+
 const updateActualButtons = (newVal, oldVal) => {
-    newVal.forEach((val, idx) => {
+    newVal.forEach(async (val, idx) => {
         if (!_.isEmpty(val)) {
             if (val.type === 'color') {
                 streamDeck.fillColor(idx, ...val.color);
+            } else if (val.type === 'image') {
+                if (oldVal[idx] && val != oldVal[idx] && val.image) {
+                    console.log('sending image', val.image.length);
+                    streamDeck.fillImage(idx, val.image);
+                }
+                //const generatedImage = await image.generateImage(val);
+                //streamDeck.fillImage(idx, generatedImage);
             }
         } else {
             streamDeck.clearKey(idx);
@@ -269,6 +406,7 @@ const updateIndividualButtonState = (key, idx) => {
 const updateButtonState = (newVal, oldVal, objectPath) => {
     console.log('%s changed from %s to %s', objectPath, oldVal, newVal);
 
+    // console.log('layouts', _.get(store.getState(), 'layouts'));
     let layout = store.getState().layouts[store.getState().currentLayout];
     let previousButtonState = store.getState().buttonState;
 

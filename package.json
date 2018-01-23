@@ -13,12 +13,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.1",
+    "dot-prop-immutable": "^1.4.0",
     "elgato-stream-deck": "^2.0.0",
     "jimp": "^0.2.28",
     "lodash": "^4.17.4",
     "obs-websocket-js": "^1.0.0",
+    "pureimage": "joshmarinacci/node-pureimage#45/head",
     "redux": "^3.7.2",
-    "redux-watch": "^1.1.1"
+    "redux-watch": "^1.1.1",
+    "sharp": "^0.18.4",
+    "stream-buffers": "^3.0.1",
+    "svg.js": "^2.6.3",
+    "svgdom": "^0.0.15"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
