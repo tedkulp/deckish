@@ -2,6 +2,8 @@
 const {obs, getScene, getSceneName, setScene, setPreviousScene, toggleSceneItem} = require('./lib/obs');
 const {streamDeck, convertKey} = require('./lib/stream_deck');
 
+const robot = require('robotjs');
+
 import store from './lib/store';
 import './layouts';
 
@@ -21,6 +23,12 @@ streamDeck.on('down', keyIndex => {
                 if (keyFound.layoutName && layouts[keyFound.layoutName]) {
                     store.dispatch({ type: 'SET_LAYOUT', value: keyFound.layoutName });
                     store.dispatch({ type: 'SET_MOMENTARY_BUTTON', value: { key: keyFound, x: col, y: row }});
+                }
+                break;
+            case 'keyBind':
+                if (keyFound.key) {
+                    robot.keyToggle(keyFound.key, "down", keyFound.modifiers || []);
+                    store.dispatch({ type: 'SET_HELD_BUTTON', value: { key: keyFound, x: col, y: row, index: keyIndex }});
                 }
                 break;
         }
@@ -72,6 +80,12 @@ streamDeck.on('up', keyIndex => {
                 store.dispatch({ type: 'CLEAR_MOMENTARY_BUTTON' });
                 if (keyFound.layoutName && keyFound.layoutName === currentLayout) {
                     store.dispatch({ type: 'REVERT_LAYOUT' });
+                }
+                break;
+            case 'keyBind':
+                store.dispatch({ type: 'CLEAR_HELD_BUTTON' });
+                if (keyFound.key) {
+                    robot.keyToggle(keyFound.key, "up", keyFound.modifiers || []);
                 }
                 break;
         }

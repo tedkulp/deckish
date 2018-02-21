@@ -22,6 +22,7 @@
     "pureimage": "joshmarinacci/node-pureimage#45/head",
     "redux": "^3.7.2",
     "redux-watch": "^1.1.1",
+    "robotjs": "^0.4.7",
     "sharp": "^0.18.4",
     "stream-buffers": "^3.0.1",
     "svg.js": "^2.6.3",
