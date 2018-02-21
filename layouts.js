@@ -409,13 +409,13 @@ try {
     console.error(err);
 }
 
-const updateActualButtons = (newVal, oldVal, override = false) => {
+const updateActualButtons = (newVal, oldVal) => {
     newVal.forEach(async (val, idx) => {
         if (!_.isEmpty(val)) {
             if (val.type === 'color') {
                 streamDeck.fillColor(idx, ...val.color);
             } else if (val.type === 'image') {
-                if ((override || (oldVal[idx] && val != oldVal[idx])) && val.image) {
+                if ((oldVal[idx] && val != oldVal[idx]) && val.image) {
                     streamDeck.fillImage(idx, val.image);
                 }
                 //const generatedImage = await image.generateImage(val);
@@ -485,7 +485,7 @@ const updateIndividualButtonState = (key, idx) => {
     }
 };
 
-const updateButtonState = (newVal, oldVal, objectPath, override = false) => {
+const updateButtonState = (newVal, oldVal, objectPath) => {
     console.log('[debug] \'%s\' changed from %s to %s', objectPath, oldVal, newVal);
 
     let layout = store.getState().layouts[store.getState().currentLayout];
@@ -498,7 +498,7 @@ const updateButtonState = (newVal, oldVal, objectPath, override = false) => {
     }
 
     let newButtonState = store.getState().buttonState;
-    updateActualButtons(newButtonState, previousButtonState, override);
+    updateActualButtons(newButtonState, previousButtonState);
 };
 
 let currentLayoutWatcher = watch(store.getState, 'currentLayout');
@@ -514,7 +514,7 @@ store.subscribe(currentHeldButtonWatcher(updateButtonState));
 // before updating all the buttons
 Promise.all(promises).then(hmm => {
     let { currentLayout, previousLayout } = store.getState();
-    updateButtonState(currentLayout, previousLayout, 'currentLayout', true); // First run just loads buttons
+    updateButtonState(currentLayout, previousLayout, 'currentLayout');
 });
 
 export default layouts;
