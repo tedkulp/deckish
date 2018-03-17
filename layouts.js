@@ -101,42 +101,38 @@ const layouts = {
         ],
         [
             {
-                type: 'sceneSourceToggle',
-                scenes: {
-                    'Full Screen HDMI': 'HDMI Blurred',
-                },
+                type: 'switchScene',
+                sceneName: 'Big Me - Medium HDMI',
                 visual: {
                     untoggled: {
                         type: 'image',
-                        color: '#c33',
-                        backgroundImage: './images/gears.png',
-                        text: 'Display',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Big Me',
                     },
                     toggled: {
                         type: 'image',
-                        color: '#000',
-                        backgroundImage: './images/gears.png',
-                        text: 'Display',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Big Me',
                     },
                 },
             },
             {
-                type: 'sceneSourceToggle',
-                scenes: {
-                    'Full Screen HDMI': 'HDMI',
-                },
+                type: 'switchScene',
+                sceneName: 'Full Screen Large HDMI',
                 visual: {
                     untoggled: {
                         type: 'image',
-                        color: '#c33',
-                        backgroundImage: './images/gears.png',
-                        text: 'Blur',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Wide HDMI',
                     },
                     toggled: {
                         type: 'image',
-                        color: '#000',
-                        backgroundImage: './images/gears.png',
-                        text: 'Blur',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Wide HDMI',
                     },
                 },
             },
@@ -197,7 +193,23 @@ const layouts = {
         ],
         [
             {
-                type: 'none',
+                type: 'keyBind',
+                key: '+',
+                modifiers: ['shift', 'alt', 'control'],
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/crossbones-white.png',
+                        text: 'Deaths++',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/crossbones-white.png',
+                        text: 'Deaths++',
+                    },
+                }
             },
             {
                 type: 'none',
@@ -262,23 +274,65 @@ const layouts = {
     sounds: [
         [
             {
-                type: 'debug',
-                message: "I'm a button on the sounds layout",
+                type: 'keyBind',
+                key: '1',
+                modifiers: ['shift', 'alt', 'control'],
                 visual: {
                     untoggled: {
-                        type: 'color',
-                        color: [255, 0, 255],
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/crossbones-white.png',
+                        text: 'Fail',
                     },
                     toggled: {
-                        type: 'color',
-                        color: [255, 0, 0],
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/crossbones-white.png',
+                        text: 'Fail',
                     },
-                },
+                }
+            },
+            {
+                type: 'keyBind',
+                key: '2',
+                modifiers: ['shift', 'alt', 'control'],
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/crossbones-white.png',
+                        text: 'Applause',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/crossbones-white.png',
+                        text: 'Applause',
+                    },
+                }
             },
         ],
         [],
         [
-            {},
+            {
+                type: 'keyBind',
+                key: '0',
+                modifiers: ['shift', 'alt', 'control'],
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/crossbones-white.png',
+                        text: 'Cancel',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/crossbones-white.png',
+                        text: 'Cancel',
+                    },
+                }
+            },
             {},
             {
                 type: 'keyBind',
@@ -303,6 +357,7 @@ const layouts = {
                 scenes: {
                     'Full Screen HDMI': 'Face Camera Scene - Green Screen',
                     'Polaroid': 'Face Camera Scene 2 - Colours',
+                    'Big Me - Medium HDMI': 'Face Camera Scene - Green Screen',
                 },
                 visual: {
                     untoggled: {
@@ -363,23 +418,78 @@ const layouts = {
                 type: 'sceneSourceToggle',
                 scenes: {
                     'Full Screen HDMI': 'HDMI',
+                    'Big Me - Medium HDMI': 'HDMI',
                 },
                 visual: {
                     untoggled: {
                         type: 'image',
                         color: '#33c',
                         backgroundImage: './images/gears.png',
-                        text: 'Blur',
+                        text: 'Display',
                     },
                     toggled: {
                         type: 'image',
                         color: '#c33',
                         backgroundImage: './images/gears.png',
-                        text: 'Blur',
+                        text: 'Display',
                     },
                 },
             },
-        ]
+            {
+                type: 'globalSceneSourceToggle',
+                scene: 'Global',
+                source: 'BRB Trans',
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#800',
+                        backgroundImage: './images/pause.png',
+                        text: 'BRB',
+                    },
+                }
+            },
+        ],
+        [
+            {
+                type: 'keyBind',
+                key: 'g',
+                modifiers: ['shift', 'alt', 'control'],
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#080',
+                        backgroundImage: './images/gears.png',
+                        text: 'Green Scr.',
+                    },
+                }
+            },
+            {
+                type: 'keyBind',
+                key: 'h',
+                modifiers: ['shift', 'alt', 'control'],
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#800',
+                        backgroundImage: './images/gears.png',
+                        text: 'Blur S.',
+                    },
+                }
+            },
+            {
+                type: 'keyBind',
+                key: 'j',
+                modifiers: ['shift', 'alt', 'control'],
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#800',
+                        backgroundImage: './images/gears.png',
+                        text: 'Blur Me',
+                    },
+                }
+            },          
+        ],
     ]
 };
 
@@ -486,7 +596,7 @@ const updateIndividualButtonState = (key, idx) => {
 };
 
 const updateButtonState = (newVal, oldVal, objectPath) => {
-    console.log('[debug] \'%s\' changed from %s to %s', objectPath, oldVal, newVal);
+    console.log('[debug] \'%s\' changed from %s to %s', objectPath, _.get(oldVal, 'name', oldVal), _.get(newVal, 'name', newVal));
 
     let layout = store.getState().layouts[store.getState().currentLayout];
     let previousButtonState = store.getState().buttonState;

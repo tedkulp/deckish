@@ -11,7 +11,7 @@ streamDeck.on('down', keyIndex => {
     const { row, col } = convertKey(keyIndex);
     const { currentLayout, layouts } = store.getState();
 
-    console.log('key down row: ', row, "col:", col);
+    // console.log('key down row: ', row, "col:", col);
 
     const keyFound = layouts[currentLayout][row] && layouts[currentLayout][row][col];
     if (keyFound && keyFound.type) {
@@ -42,7 +42,7 @@ streamDeck.on('up', keyIndex => {
     const { row, col } = convertKey(keyIndex);
     const { currentLayout, currentMomentaryButton, layouts } = store.getState();
 
-    console.log('key up row: ', row, "col:", col);
+    // console.log('key up row: ', row, "col:", col);
 
     const keyFound = (currentMomentaryButton && currentMomentaryButton.x === col && currentMomentaryButton.y === row && currentMomentaryButton.key) ||
         (layouts[currentLayout][row] && layouts[currentLayout][row][col]);
@@ -74,6 +74,11 @@ streamDeck.on('up', keyIndex => {
                         const sceneItemName = keyFound.scenes[currentSceneName];
                         toggleSceneItem(currentSceneName, sceneItemName);
                     }
+                }
+                break;
+            case 'globalSceneSourceToggle':
+                if (keyFound.scene && keyFound.source) {
+                    toggleSceneItem(keyFound.scene, keyFound.source);
                 }
                 break;
             case 'momentaryLayout':
