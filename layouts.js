@@ -418,6 +418,7 @@ const layouts = {
                 type: 'sceneSourceToggle',
                 scenes: {
                     'Full Screen HDMI': 'HDMI',
+                    'Full Desktop Camera': 'HDMI',
                     'Big Me - Medium HDMI': 'HDMI',
                 },
                 visual: {
