@@ -120,19 +120,19 @@ const layouts = {
             },
             {
                 type: 'switchScene',
-                sceneName: 'Full Screen Large HDMI',
+                sceneName: 'Rocksmith 2014',
                 visual: {
                     untoggled: {
                         type: 'image',
                         color: '#000',
                         backgroundImage: './images/scene.png',
-                        text: 'Wide HDMI',
+                        text: 'Rock!',
                     },
                     toggled: {
                         type: 'image',
                         color: '#c33',
                         backgroundImage: './images/scene.png',
-                        text: 'Wide HDMI',
+                        text: 'Rock!',
                     },
                 },
             },
@@ -357,6 +357,8 @@ const layouts = {
                 scenes: {
                     'Full Screen HDMI': 'Face Camera Scene - Green Screen',
                     'Polaroid': 'Face Camera Scene 2 - Colours',
+                    'Keyboard Cam': 'Face Camera Scene - Green Screen',
+                    'Keyboard Cam w/ HDMI': 'Face Camera Scene - Green Screen',
                     'Big Me - Medium HDMI': 'Face Camera Scene - Green Screen',
                 },
                 visual: {
@@ -419,6 +421,7 @@ const layouts = {
                 scenes: {
                     'Full Screen HDMI': 'HDMI',
                     'Full Desktop Camera': 'HDMI',
+                    'Keyboard Cam w/ HDMI': 'HDMI',
                     'Big Me - Medium HDMI': 'HDMI',
                 },
                 visual: {
@@ -489,9 +492,71 @@ const layouts = {
                         text: 'Blur Me',
                     },
                 }
-            },          
+            },
+            {
+                type: 'switchScene',
+                sceneName: 'Thanks for Watching',
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#000',
+                        backgroundImage: './images/scene.png',
+                        text: 'Thanks',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/scene.png',
+                        text: 'Thanks!',
+                    },
+                },
+            },
+            {
+                type: 'sceneSourceToggle',
+                scenes: {
+                    'Full Screen HDMI': 'Face Camera Scene - Green Screen Flipped',
+                },
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#33c',
+                        backgroundImage: './images/gears.png',
+                        text: 'Flipped',
+                    },
+                    toggled: {
+                        type: 'image',
+                        color: '#c33',
+                        backgroundImage: './images/gears.png',
+                        text: 'Flipped',
+                    },
+                },
+            },
         ],
-    ]
+        [
+            {
+                type: 'previewTransition',
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#800',
+                        backgroundImage: './images/gears.png',
+                        text: 'Trans.',
+                    },
+                },
+            },
+            {
+                type: 'toggleStudio',
+                visual: {
+                    untoggled: {
+                        type: 'image',
+                        color: '#008',
+                        backgroundImage: './images/gears.png',
+                        text: 'Studio',
+                    },
+                },
+            },
+        ],
+    ],
 };
 
 store.dispatch({ type: 'INIT_LAYOUTS', value: layouts });

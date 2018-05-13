@@ -93,6 +93,12 @@ streamDeck.on('up', keyIndex => {
                     robot.keyToggle(keyFound.key, "up", keyFound.modifiers || []);
                 }
                 break;
+            case "previewTransition":
+                obs.transitionToProgram();
+                break;
+            case "toggleStudio":
+                obs.toggleStudioMode();
+                break;
         }
     }
 });
