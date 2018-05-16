@@ -1,2 +1,13 @@
 node_modules
 dist
+output\.png
+
+test\.js
+
+test\.png
+
+test\.svg
+
+testresize\.js
+
+testsvg\.js
