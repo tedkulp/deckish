@@ -48,6 +48,7 @@ function createTray() {
   tray = new Tray(path.join(__static, '/icon.png'));
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Reload Configuration', click() { console.log('Hi!'); } },
+    { label: 'Exit', click() { app.quit(); } },
   ]);
   tray.setToolTip('Deckish');
   tray.setContextMenu(contextMenu);
@@ -70,6 +71,6 @@ app.on('activate', () => {
 
 // create main BrowserWindow when electron is ready
 app.on('ready', () => {
-  // createTray();
+  createTray();
   // mainWindow = createMainWindow();
 });
