@@ -11,5 +11,5 @@ const convertKey = keyIndex => {
     return {row, col};
 }
 
-module.exports.convertKey = convertKey;
-module.exports.streamDeck = myStreamDeck;
+exports.convertKey = convertKey;
+exports.streamDeck = myStreamDeck;

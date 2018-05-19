@@ -3,7 +3,7 @@ const path = require('path');
 const PImage = require('pureimage');
 const streamBuffers = require('stream-buffers');
 const Promise = require('bluebird');
-const font = PImage.registerFont(path.resolve(__dirname, '../fonts/SourceSansPro-Regular.ttf'), 'Source Sans Pro');
+const font = PImage.registerFont(path.join(__static, '/fonts/SourceSansPro-Regular.ttf'), 'Source Sans Pro');
 
 const measureText = (font, ctx, text) => {
     if(!font) console.log("WARNING. Can't find font family ", ctx._font.family);
@@ -75,12 +75,12 @@ const overlayImage = async (baseImage, overlayImage) => {
         .overlayWith(sharp(overlayImage));
 };
 
-module.exports.generateImage = props => {
+exports.generateImage = props => {
     return new Promise((resolve, reject) => {
         font.load(async () => {
             try {
                 let baseImage = generateBaseImage(props.color);
-                baseImage = await overlayBuffer(baseImage, await generateImageOverlayBuffer(props.backgroundImage), {left: 72/2 - 54/2, top: 0});
+                baseImage = await overlayBuffer(baseImage, await generateImageOverlayBuffer(path.join(__static, props.backgroundImage)), {left: 72/2 - 54/2, top: 0});
                 baseImage = await overlayBuffer(baseImage, await generatePImage(font, props.text));
                 baseImage = await baseImage.png().toBuffer();
                 const final = await sharp(baseImage).flatten().raw().toBuffer();

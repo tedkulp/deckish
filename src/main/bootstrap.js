@@ -3,9 +3,8 @@ const {obs, getScene, getSceneName, setScene, setPreviousScene, toggleSceneItem}
 const {streamDeck, convertKey} = require('./lib/stream_deck');
 
 const robot = require('robotjs');
-
-import store from './lib/store';
-import './layouts';
+const store = require('./lib/store').store;
+const layouts = require('./layouts');
 
 streamDeck.on('down', keyIndex => {
     const { row, col } = convertKey(keyIndex);
@@ -103,9 +102,7 @@ streamDeck.on('up', keyIndex => {
     }
 });
 
-
-
-
+exports.streamDeck = streamDeck;
 
 // Fill the first button form the left in the first row with a solid red color. This is synchronous.
 //streamDeck.fillColor(4, 255, 0, 0);

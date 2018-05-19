@@ -2,7 +2,7 @@ const _ = require('lodash');
 const OBSWebSocket = require('obs-websocket-js');
 const obs = new OBSWebSocket();
 
-import store from './store';
+const store = require('./store').store;
 
 const hostname = 'localhost:4444';
 let   reconnecting = false;
@@ -124,9 +124,11 @@ const toggleSceneItem = (sceneName, sceneItemName) => {
     });
 };
 
-module.exports.obs = obs;
-module.exports.getScene = getScene;
-module.exports.getSceneName = getSceneName;
-module.exports.setScene = setScene;
-module.exports.toggleSceneItem = toggleSceneItem;
-module.exports.setPreviousScene = setPreviousScene;
+console.log(getSceneName);
+
+exports.obs = obs;
+exports.getScene = getScene;
+exports.getSceneName = getSceneName;
+exports.setScene = setScene;
+exports.toggleSceneItem = toggleSceneItem;
+exports.setPreviousScene = setPreviousScene;
