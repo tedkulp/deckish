@@ -3071,9 +3071,9 @@ domutils@^1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
-dot-prop-immutable@^1.4.0:
+dot-prop-immutable@porfirioribeiro/dot-prop-immutable:
   version "1.4.0"
-  resolved "https://registry.yarnpkg.com/dot-prop-immutable/-/dot-prop-immutable-1.4.0.tgz#43c1e84d42bd7643c20a9063c07c99dfc9186ee0"
+  resolved "https://codeload.github.com/porfirioribeiro/dot-prop-immutable/tar.gz/4a413877923d9cd4156417356cc84ff791e94bea"
 
 dot-prop@^4.1.0:
   version "4.2.0"

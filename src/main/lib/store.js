@@ -14,13 +14,25 @@ const reducer = (state = initialState, action) => {
     // console.log(state, action);
     switch(action.type) {
         case "SET_INITIAL_SCENE":
-            const tmp = dotProp.set(state, 'currentScene', action.value);
-            return dotProp.set(tmp, 'previousScene', action.value);
+            return dotProp.setAll(state, {
+                currentScene: action.value,
+                previousScene: action.value,
+            });
         case "SET_SCENE":
-        case "SET_PREVIEW_SCENE":
             if (!state.studioMode) {
-                const tmp2 = dotProp.set(state, 'previousScene', state.currentScene);
-                return dotProp.set(tmp2, 'currentScene', action.value);
+                return dotProp.setAll(state, {
+                    currentScene: action.value,
+                    previousScene: state.currentScene,
+                });
+            } else {
+                return state;
+            }
+        case "SET_PREVIEW_SCENE":
+            if (state.studioMode) {
+                return dotProp.setAll(state, {
+                    currentScene: action.value,
+                    previousScene: state.currentScene,
+                });
             } else {
                 return state;
             }
@@ -28,11 +40,15 @@ const reducer = (state = initialState, action) => {
             return dotProp
                 .set(state, 'currentScene', action.value);
         case "SET_LAYOUT":
-            const tmp3 = dotProp.set(state, 'previousLayout', state.currentLayout);
-            return dotProp.set(tmp3, 'currentLayout', action.value);
+            return dotProp.setAll(state, {
+                currentLayout: action.value,
+                previousLayout: state.currentLayout,
+            });
         case "REVERT_LAYOUT":
-            const tm4 = dotProp.set(state, 'currentLayout', state.previousLayout);
-            return dotProp.set(tm4, 'previousLayout', state.currentLayout);
+            return dotProp.setAll(state, {
+                currentLayout: state.previousLayout,
+                previousLayout: state.currentLayout,
+            })
         case "SET_MOMENTARY_BUTTON":
             return dotProp
                 .set(state, 'currentMomentaryButton', action.value);
@@ -62,7 +78,8 @@ const reducer = (state = initialState, action) => {
             return dotProp
                 .set(state, 'studioMode', action.value);
         case "UPDATE_BUTTON_IMG":
-            return dotProp.set(state, `layouts.${action.layout}.${action.row}.${action.index}.visual.${action.imageType}.image`, action.image);
+            return dotProp
+                .set(state, `layouts.${action.layout}.${action.row}.${action.index}.visual.${action.imageType}.image`, action.image);
     }
 };
 

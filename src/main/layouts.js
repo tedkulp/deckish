@@ -562,9 +562,7 @@ const layouts = {
     ],
 };
 
-console.log('right before', store, store.dispatch);
 store.dispatch({ type: 'INIT_LAYOUTS', value: layouts });
-console.log('right after', store, store.dispatch);
 
 let promises = [];
 try {

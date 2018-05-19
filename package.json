@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "dot-prop-immutable": "^1.4.0",
+    "dot-prop-immutable": "porfirioribeiro/dot-prop-immutable",
     "elgato-stream-deck": "^2.1.1",
     "jimp": "^0.2.28",
     "lodash": "^4.17.4",
