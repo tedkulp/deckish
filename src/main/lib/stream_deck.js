@@ -1,15 +1,16 @@
-const path = require('path');
-const StreamDeck = require('elgato-stream-deck');
+import path from 'path';
+import StreamDeck from 'elgato-stream-deck';
 
-const myStreamDeck = new StreamDeck();
+export const streamDeck = new StreamDeck();
+streamDeck.clearAllKeys();
 
-myStreamDeck.clearAllKeys();
-
-const convertKey = keyIndex => {
+export function convertKey(keyIndex) {
     const row = Math.floor(keyIndex / 5);
     const col = 5 - (keyIndex - (5 * row)) - 1;
     return {row, col};
 }
 
-exports.convertKey = convertKey;
-exports.streamDeck = myStreamDeck;
+export default {
+    convertKey,
+    streamDeck,
+};

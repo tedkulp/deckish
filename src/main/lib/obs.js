@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const OBSWebSocket = require('obs-websocket-js');
-const obs = new OBSWebSocket();
+import _ from 'lodash';
+import store from './store';
+import OBSWebSocket from 'obs-websocket-js';
 
-const store = require('./store').store;
+export const obs = new OBSWebSocket();
 
 const hostname = 'localhost:4444';
 let   reconnecting = false;
@@ -81,11 +81,11 @@ obs.on('error', err => {
     console.error('socket error:', err);
 });
 
-const getScene = () => {
+export function getScene() {
     return store.getState().currentScene || {};
 };
 
-const getSceneName = () => {
+export function getSceneName() {
     return getScene().name || getScene()['scene-name'];
 };
 
@@ -97,7 +97,7 @@ const getPreviousSceneName = () => {
     return getPreviousScene().name || getPreviousScene()['scene-name'];
 };
 
-const setScene = sceneName => {
+export function setScene(sceneName) {
     if (store.getState().studioMode) {
         obs.setPreviewScene({'scene-name': sceneName})
             .catch(err => console.error(err));        
@@ -107,11 +107,11 @@ const setScene = sceneName => {
     }
 };
 
-const setPreviousScene = () => {
+export function setPreviousScene() {
     setScene(getPreviousSceneName());
 };
 
-const toggleSceneItem = (sceneName, sceneItemName) => {
+export function toggleSceneItem(sceneName, sceneItemName) {
     obs.getSceneItemProperties({
         'scene-name': sceneName,
         item: sceneItemName,
@@ -124,11 +124,11 @@ const toggleSceneItem = (sceneName, sceneItemName) => {
     });
 };
 
-console.log(getSceneName);
-
-exports.obs = obs;
-exports.getScene = getScene;
-exports.getSceneName = getSceneName;
-exports.setScene = setScene;
-exports.toggleSceneItem = toggleSceneItem;
-exports.setPreviousScene = setPreviousScene;
+export default {
+    obs,
+    getScene,
+    getSceneName,
+    setScene,
+    toggleSceneItem,
+    setPreviousScene,
+};

@@ -1,8 +1,8 @@
-const sharp = require('sharp');
-const path = require('path');
-const PImage = require('pureimage');
-const streamBuffers = require('stream-buffers');
-const Promise = require('bluebird');
+import sharp from 'sharp';
+import path from 'path';
+import PImage from 'pureimage';
+import streamBuffers from 'stream-buffers';
+import Promise from 'bluebird';
 const font = PImage.registerFont(path.join(__static, '/fonts/SourceSansPro-Regular.ttf'), 'Source Sans Pro');
 
 const measureText = (font, ctx, text) => {
@@ -75,7 +75,7 @@ const overlayImage = async (baseImage, overlayImage) => {
         .overlayWith(sharp(overlayImage));
 };
 
-exports.generateImage = props => {
+export function generateImage(props) {
     return new Promise((resolve, reject) => {
         font.load(async () => {
             try {
@@ -91,4 +91,8 @@ exports.generateImage = props => {
             }
         });
     });
+};
+
+export default {
+    generateImage,
 };

@@ -1,5 +1,5 @@
-const dotProp = require('dot-prop-immutable');
-const createStore = require('redux').createStore;
+import dotProp from 'dot-prop-immutable';
+import { createStore } from 'redux';
 
 const initialState = {
     currentLayout: 'main',
@@ -91,5 +91,4 @@ store.subscribe(() => {
 });
 */
 
-//export default store;
-exports.store = store;
+export default store;

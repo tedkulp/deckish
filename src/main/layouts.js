@@ -1,12 +1,10 @@
-//import watch from 'redux-watch'
-//import store from './lib/store';
-//import _ from 'lodash';
-const watch = require('redux-watch');
-const _ = require('lodash');
-const store = require('./lib/store').store;
-const { streamDeck, convertKey } = require('./lib/stream_deck');
-const { getSceneName, getScene } = require('./lib/obs');
-const image = require('./lib/image');
+import watch from 'redux-watch'
+import _ from 'lodash';
+
+import store from './lib/store';
+import { streamDeck, convertKey } from './lib/stream_deck';
+import { getSceneName, getScene } from './lib/obs';
+import image from './lib/image';
 
 const layouts = {
     main: [

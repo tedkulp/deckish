@@ -1,10 +1,10 @@
 
-const {obs, getScene, getSceneName, setScene, setPreviousScene, toggleSceneItem} = require('./lib/obs');
-const {streamDeck, convertKey} = require('./lib/stream_deck');
+import { obs, getScene, getSceneName, setScene, setPreviousScene, toggleSceneItem } from './lib/obs';
+import { streamDeck, convertKey } from './lib/stream_deck';
 
-const robot = require('robotjs');
-const store = require('./lib/store').store;
-const layouts = require('./layouts');
+import robot from 'robotjs';
+import store from './lib/store';
+import layouts from './layouts';
 
 streamDeck.on('down', keyIndex => {
     const { row, col } = convertKey(keyIndex);
@@ -102,11 +102,10 @@ streamDeck.on('up', keyIndex => {
     }
 });
 
-exports.streamDeck = streamDeck;
+export default {
+    streamDeck,
+};
 
 // Fill the first button form the left in the first row with a solid red color. This is synchronous.
 //streamDeck.fillColor(4, 255, 0, 0);
 //console.log('Successfully wrote a red square to key 4.');
-
-
-
