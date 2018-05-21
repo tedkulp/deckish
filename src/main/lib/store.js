@@ -64,6 +64,14 @@ const reducer = (state = initialState, action) => {
         case "INIT_LAYOUTS":
             return dotProp
                 .set(state, 'layouts', action.value);
+        case "CLEAR_LAYOUTS":
+            return dotProp
+                .setAll(state, {
+                    buttonState: initialState.buttonState,
+                    layouts: null,
+                    currentHeldButton: initialState.currentHeldButton,
+                    currentMomentaryButton: initialState.currentMomentaryButton,
+                });
         case "SET_BUTTON":
             return dotProp
                 .set(state, 'buttonState', state.buttonState.map((btn, idx) => {

@@ -1,0 +1,24 @@
+{
+    "main": [
+        [
+            {
+                "type": "switchScene",
+                "sceneName": "Scene",
+                "visual": {
+                    "untoggled": {
+                        "type": "image",
+                        "color": "#000",
+                        "backgroundImage": "./images/scene.png",
+                        "text": "Scene"
+                    },
+                    "toggled": {
+                        "type": "image",
+                        "color": "#c33",
+                        "backgroundImage": "./images/scene.png",
+                        "text": "Scene"
+                    }
+                }
+            }
+        ]
+    ]
+}

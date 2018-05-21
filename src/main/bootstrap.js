@@ -4,7 +4,11 @@ import { streamDeck, convertKey } from './lib/stream_deck';
 
 import robot from 'robotjs';
 import store from './lib/store';
-import layouts from './layouts';
+import { load } from './layouts';
+
+export function reloadConfig() {
+    load();
+}
 
 streamDeck.on('down', keyIndex => {
     const { row, col } = convertKey(keyIndex);
@@ -102,8 +106,10 @@ streamDeck.on('up', keyIndex => {
     }
 });
 
+load();
+
 export default {
-    streamDeck,
+    reloadConfig,
 };
 
 // Fill the first button form the left in the first row with a solid red color. This is synchronous.
