@@ -12,7 +12,8 @@
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "postinstall": "electron-builder install-app-deps && node node_modules/sharp/install/dll-copy.js"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "redux-watch": "^1.1.1",
     "robotjs": "^0.4.7",
     "sharp": "^0.20.0",
+    "source-map-support": "^0.5.6",
     "stream-buffers": "^3.0.1",
     "svg.js": "^2.6.3",
     "svgdom": "^0.0.15"
@@ -36,7 +38,6 @@
     "babel-cli": "^6.26.0",
     "electron": "^2.0.1",
     "electron-builder": "^20.13.4",
-    "electron-rebuild": "^1.7.3",
     "electron-webpack": "^2.1.1",
     "nodemon": "^1.14.3",
     "webpack": "^4.8.3"
