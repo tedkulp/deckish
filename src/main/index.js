@@ -12,7 +12,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 let mainWindow;
 
 function createMainWindow() {
-    const window = new BrowserWindow();
+    const window = new BrowserWindow({ width: 1600, height: 900 });
 
     if (isDevelopment) {
         window.webContents.openDevTools();
@@ -47,6 +47,7 @@ let tray = null;
 function createTray() {
     tray = new Tray(path.join(__static, '/icon.png'));
     const contextMenu = Menu.buildFromTemplate([
+        { label: 'Settings', click() { mainWindow = createMainWindow(); } },
         { label: 'Reload Configuration', click() { reloadConfig(); } },
         { label: 'Exit', click() { app.quit(); } },
     ]);
@@ -57,9 +58,9 @@ function createTray() {
 // quit application when all windows are closed
 app.on('window-all-closed', () => {
     // on macOS it is common for applications to stay open until the user explicitly quits
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
+    //if (process.platform !== 'darwin') {
+    //    app.quit();
+    //}
 });
 
 app.on('activate', () => {
