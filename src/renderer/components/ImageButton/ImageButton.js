@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
 
 import './ImageButton.scss';
 
@@ -14,7 +15,9 @@ class ImageButton extends React.Component {
 
         return (
             <div className="image-button" onClick={(evt) => this.clickButton(evt)}>
-                {col}, {row}
+                <Typography component="div" variant="body1">
+                    {col}, {row}
+                </Typography>
             </div>
         );
     }

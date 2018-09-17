@@ -1,8 +1,8 @@
 .grid {
     margin-top: 20px;
-    .grid-col {
-        width: 90px;
-        display: inline-flex;
-        margin-bottom: 18px;
+    .cell-wrapper {
+        height: 72px;
+        width: 72px;
+        margin: 10px;
     }
 }

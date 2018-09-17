@@ -18,13 +18,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^1.1.0",
+    "@material-ui/icons": "^1.1.0",
     "bluebird": "^3.5.1",
-    "bootstrap": "^4.1.1",
     "dot-prop-immutable": "porfirioribeiro/dot-prop-immutable",
     "elgato-stream-deck": "^2.1.1",
     "jimp": "^0.2.28",
     "jquery": "^3.3.1",
     "lodash": "^4.17.4",
+    "material-design-icons": "^3.0.1",
     "obs-websocket-js": "^1.2.0",
     "popper.js": "^1.14.3",
     "pureimage": "joshmarinacci/node-pureimage#45/head",
@@ -40,10 +42,12 @@
     "source-map-support": "^0.5.6",
     "stream-buffers": "^3.0.1",
     "svg.js": "^2.6.3",
-    "svgdom": "^0.0.15"
+    "svgdom": "^0.0.15",
+    "typeface-roboto": "^0.0.54"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.0.0-beta.49",
+    "@babel/preset-stage-3": "^7.0.0-beta.49",
     "babel-cli": "^6.26.0",
     "electron": "^2.0.1",
     "electron-builder": "^20.13.4",
