@@ -4,36 +4,46 @@ import ImageButton from '../ImageButton/ImageButton';
 
 import MaterialGrid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import withTheme from '@material-ui/core/styles/withTheme';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import './Grid.scss';
 
 const styles = theme => ({
     root: {
-      ...theme.typography.button,
-      backgroundColor: theme.palette.common.white,
-      padding: theme.spacing.unit,
+        ...theme.mixins.gutters(),
+        paddingTop: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2,
     },
-  });
-  
+});
 
 class Grid extends React.Component {
 
     render() {
+        const { classes } = this.props;
+
         return (
-            <div className="grid">
-                {[1, 2, 3].map(rowNumber => (
-                    <MaterialGrid container justify="center" key={"row-"+rowNumber}>
-                    {[1,2,3,4,5].map(colNumber => (
-                        <MaterialGrid item key={"col-"+rowNumber+"-"+colNumber}>
-                            <Paper className="cell-wrapper">
-                                <ImageButton row={rowNumber} col={colNumber} />
-                            </Paper>
-                        </MaterialGrid>
-                    ))}
-                    </MaterialGrid>
-                ))}
-            </div>
+            <React.Fragment>
+                <Paper className={classes.root} elevation={1}>
+                    <Typography variant="headline" component="h2">
+                        Layout
+                    </Typography>
+
+                    <div className="grid">
+                        {[1, 2, 3].map(rowNumber => (
+                            <MaterialGrid container justify="center" key={"row-"+rowNumber}>
+                            {[1,2,3,4,5].map(colNumber => (
+                                <MaterialGrid item key={"col-"+rowNumber+"-"+colNumber}>
+                                    <Paper className="cell-wrapper">
+                                        <ImageButton row={rowNumber} col={colNumber} />
+                                    </Paper>
+                                </MaterialGrid>
+                            ))}
+                            </MaterialGrid>
+                        ))}
+                    </div>
+                </Paper>
+            </React.Fragment>
         );
     }
 
@@ -45,4 +55,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default withTheme(styles)(connect(mapStateToProps)(Grid));
+export default withStyles(styles)(connect(mapStateToProps)(Grid));
